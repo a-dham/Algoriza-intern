@@ -5,8 +5,8 @@ import 'package:sizer/sizer.dart';
 import 'package:task_1/app_router.dart';
 import 'package:task_1/screens/helperComponents/custom_elevated_button.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class SignUpScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Flexible(child: Image.asset('assets/images/logInAndSignUP.png')),
+            Image.asset('assets/images/logInAndSignUP.png'),
             Text(
               'Welcome to Fashion Daily',
               style: TextStyle(
@@ -36,7 +36,7 @@ class SignUpScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  'Register',
+                  'Sign In',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
@@ -70,26 +70,11 @@ class SignUpScreen extends StatelessWidget {
               height: 2.h,
             ),
             Text(
-              'Email',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.grey,
-                fontSize: 12.sp,
-              ),
-            ),
-            SizedBox(
-              height: 1.h,
-            ),
-            TextFormField(),
-            SizedBox(
-              height: 2.h,
-            ),
-            Text(
               'Phone Number',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.grey,
-                fontSize: 12.sp,
+                fontSize: 14.sp,
               ),
             ),
             SizedBox(
@@ -133,7 +118,7 @@ class SignUpScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomElevatedButton(
-                    text: 'Register',
+                    text: 'Sign In',
                     textColor: Colors.white,
                     buttonColor: Color(0xff263238),
                     circular: 5,
@@ -184,7 +169,7 @@ class SignUpScreen extends StatelessWidget {
                   text: TextSpan(
                     children: [
                       const TextSpan(
-                        text: 'hase any account? ',
+                        text: 'Don\'t have an account? ',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.grey,
@@ -196,10 +181,10 @@ class SignUpScreen extends StatelessWidget {
                           ..onTap = () {
                             Navigator.popAndPushNamed(
                               context,
-                              login,
+                              signUp,
                             );
                           },
-                        text: 'Sign in here',
+                        text: 'Register Here',
                         style: const TextStyle(
                           color: Color(0xff263238),
                           fontWeight: FontWeight.bold,
@@ -212,7 +197,7 @@ class SignUpScreen extends StatelessWidget {
               height: 3.5.h,
             ),
             Text(
-              'By regestering your account , you are agree to our \nTerms and Condtion',
+              'Use the application according to policy rules Any \nkinds of violations will be Subject to sanctions',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.bold,

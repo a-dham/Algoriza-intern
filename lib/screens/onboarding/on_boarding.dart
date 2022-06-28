@@ -2,9 +2,9 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
+import 'package:task_1/app_router.dart';
 import 'package:task_1/screens/helperComponents/custom_elevated_button.dart';
 
-import '../Auth/signUp/sign_up_screen.dart';
 import 'widgets/page_view_components.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -21,8 +21,7 @@ class _OnBoardingState extends State<OnBoarding> {
   void initState() {
     pageController = PageController(
       initialPage: 0,
-    )
-      ..addListener(() {
+    )..addListener(() {
         setState(() {});
       });
     super.initState();
@@ -40,14 +39,19 @@ class _OnBoardingState extends State<OnBoarding> {
               child: Visibility(
                 visible: pageController!.hasClients
                     ? pageController!.page == 2
-                    ? false
-                    : true
+                        ? false
+                        : true
                     : true,
                 replacement: const SizedBox(
                   height: 48,
                 ),
                 child: CustomElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.popAndPushNamed(
+                      context,
+                      login,
+                    );
+                  },
                   verticalPadding: 10,
                   text: 'Skip',
                   textColor: Colors.black,
@@ -86,24 +90,25 @@ class _OnBoardingState extends State<OnBoarding> {
               child: PageView(
                 controller: pageController,
                 reverse: false,
+                allowImplicitScrolling: true,
                 children: const [
                   PageViewComponents(
                     image: 'assets/images/1.png',
                     title: 'Get Food delivery to Your\ndoorStep asap',
                     description:
-                    'We have young and professional delivery \nteam that will bring your food as soon as \npossible to your doorstep',
+                        'We have young and professional delivery \nteam that will bring your food as soon as \npossible to your doorstep',
                   ),
                   PageViewComponents(
                     image: 'assets/images/2.png',
                     title: 'Buy Any Food From your \nfavorite restaurant',
                     description:
-                    'We have young and professional delivery \nteam that will bring your food as soon as \npossible to your doorstep',
+                        'We have young and professional delivery \nteam that will bring your food as soon as \npossible to your doorstep',
                   ),
                   PageViewComponents(
                     image: 'assets/images/3.png',
                     title: 'Get Food delivery to Your\ndoorStep asap',
                     description:
-                    'We have young and professional delivery \nteam that will bring your food as soon as \npossible to your doorstep',
+                        'We have young and professional delivery \nteam that will bring your food as soon as \npossible to your doorstep',
                   ),
                 ],
               ),
@@ -127,13 +132,24 @@ class _OnBoardingState extends State<OnBoarding> {
                 Expanded(
                   child: CustomElevatedButton(
                     onPressed: () {
-
+                      if (pageController!.hasClients &&
+                          pageController!.page == 2) {
+                        Navigator.popAndPushNamed(
+                          context,
+                          login,
+                        );
+                      } else {
+                        pageController!.nextPage(
+                          duration: const Duration(milliseconds: 600),
+                          curve: Curves.easeIn,
+                        );
+                      }
                     },
                     verticalPadding: 23,
                     text: pageController!.hasClients
                         ? pageController!.page == 2
-                        ? 'Get Started'
-                        : 'Next'
+                            ? 'Get Started'
+                            : 'Next'
                         : 'next',
                     textColor: Colors.white,
                     buttonColor: const Color(0xff263238),
@@ -160,7 +176,12 @@ class _OnBoardingState extends State<OnBoarding> {
                       TextSpan(
                         onEnter: (value) {},
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () {},
+                          ..onTap = () {
+                            Navigator.popAndPushNamed(
+                              context,
+                              signUp,
+                            );
+                          },
                         text: 'Sign Up',
                         style: const TextStyle(
                           color: Color(0xff263238),
