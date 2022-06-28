@@ -20,7 +20,9 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Image.asset('assets/images/logInAndSignUP.png'),
+            Flexible(
+                child: Center(
+                    child: Image.asset('assets/images/logInAndSignUP.png'))),
             Text(
               'Welcome to Fashion Daily',
               style: TextStyle(

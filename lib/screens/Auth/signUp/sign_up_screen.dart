@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:task_1/app_router.dart';
+import 'package:task_1/screens/helperComponents/customTextFormField.dart';
 import 'package:task_1/screens/helperComponents/custom_elevated_button.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -20,7 +21,9 @@ class SignUpScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Flexible(child: Image.asset('assets/images/logInAndSignUP.png')),
+            Flexible(
+                child: Center(
+                    child: Image.asset('assets/images/logInAndSignUP.png'))),
             Text(
               'Welcome to Fashion Daily',
               style: TextStyle(
@@ -80,7 +83,10 @@ class SignUpScreen extends StatelessWidget {
             SizedBox(
               height: 1.h,
             ),
-            TextFormField(),
+            CustomeTextFormField(
+              hintText: 'Eg . example@email.com',
+              suffixWidget: null,
+            ),
             SizedBox(
               height: 2.h,
             ),
@@ -103,7 +109,7 @@ class SignUpScreen extends StatelessWidget {
                         onChanged: print,
                         // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
                         initialSelection: 'EG',
-                        favorite: ['+39', 'FR'],
+                        favorite: const ['+39', 'FR'],
                         // optional. Shows only country name and flag
                         showCountryOnly: false,
                         // optional. Shows only country name and flag when popup is closed.
@@ -129,13 +135,37 @@ class SignUpScreen extends StatelessWidget {
             SizedBox(
               height: 2.h,
             ),
+            Text(
+              'Password',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+                fontSize: 12.sp,
+              ),
+            ),
+            SizedBox(
+              height: 1.h,
+            ),
+            CustomeTextFormField(
+              hintText: 'Password',
+              suffixWidget: IconButton(
+                onPressed: () {},
+                padding: EdgeInsets.zero,
+                splashRadius: 2,
+                constraints: const BoxConstraints(maxHeight: 10, maxWidth: 20),
+                icon: const Icon(Icons.visibility),
+              ),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
             Row(
               children: [
                 Expanded(
                   child: CustomElevatedButton(
                     text: 'Register',
                     textColor: Colors.white,
-                    buttonColor: Color(0xff263238),
+                    buttonColor: const Color(0xff263238),
                     circular: 5,
                     onPressed: () {},
                     verticalPadding: 20,
@@ -212,7 +242,7 @@ class SignUpScreen extends StatelessWidget {
               height: 3.5.h,
             ),
             Text(
-              'By regestering your account , you are agree to our \nTerms and Condtion',
+              'By regestering your account , you are agree to our \nTerms and Condition',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
