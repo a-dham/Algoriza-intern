@@ -14,17 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Sizer(
-
-      builder: (context,orientation,deviceType)=>MaterialApp(
+      builder: (context, orientation, deviceType) => MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
         home: const OnBoarding(),
       ),
-
     );
   }
 }
-
-

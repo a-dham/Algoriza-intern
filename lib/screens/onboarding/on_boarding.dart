@@ -1,8 +1,32 @@
+import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter/gestures.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
+import 'package:task_1/screens/helperComponents/custom_elevated_button.dart';
 
-class OnBoarding extends StatelessWidget {
+import '../Auth/signUp/sign_up_screen.dart';
+import 'widgets/page_view_components.dart';
+
+class OnBoarding extends StatefulWidget {
   const OnBoarding({Key? key}) : super(key: key);
+
+  @override
+  State<OnBoarding> createState() => _OnBoardingState();
+}
+
+class _OnBoardingState extends State<OnBoarding> {
+  PageController? pageController;
+
+  @override
+  void initState() {
+    pageController = PageController(
+      initialPage: 0,
+    )
+      ..addListener(() {
+        setState(() {});
+      });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,25 +37,56 @@ class OnBoarding extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.centerRight,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: const Text('Skip'),
+              child: Visibility(
+                visible: pageController!.hasClients
+                    ? pageController!.page == 2
+                    ? false
+                    : true
+                    : true,
+                replacement: const SizedBox(
+                  height: 48,
+                ),
+                child: CustomElevatedButton(
+                  onPressed: () {},
+                  verticalPadding: 10,
+                  text: 'Skip',
+                  textColor: Colors.black,
+                  buttonColor: Colors.amber.withOpacity(0.2),
+                  circular: 15,
+                ),
               ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '7',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.sp,
+                    color: Colors.grey,
+                  ),
+                ),
+                Text(
+                  'Krave',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.sp,
+                    color: const Color(0xff263238),
+                  ),
+                ),
+              ],
             ),
             SizedBox(
               height: 2.h,
             ),
-
             SizedBox(
               height: 60.h,
               width: double.infinity,
               child: PageView(
+                controller: pageController,
                 reverse: false,
-                onPageChanged: (index) {
-
-                },
-
-                children: [
+                children: const [
                   PageViewComponents(
                     image: 'assets/images/1.png',
                     title: 'Get Food delivery to Your\ndoorStep asap',
@@ -52,60 +107,72 @@ class OnBoarding extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
+            DotsIndicator(
+              dotsCount: 3,
+              position: pageController!.hasClients ? pageController!.page! : 0,
+              decorator: const DotsDecorator(
+                shape: Border(),
+                activeColor: Color(0xff263238),
+                size: Size(15, 5),
+                activeShape: Border(),
+                activeSize: Size(15, 5),
+              ),
+            ),
+            SizedBox(
+              height: 3.h,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomElevatedButton(
+                    onPressed: () {
+
+                    },
+                    verticalPadding: 23,
+                    text: pageController!.hasClients
+                        ? pageController!.page == 2
+                        ? 'Get Started'
+                        : 'Next'
+                        : 'next',
+                    textColor: Colors.white,
+                    buttonColor: const Color(0xff263238),
+                    circular: 10,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 3.h,
+            ),
+            Align(
+              child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    children: [
+                      const TextSpan(
+                        text: 'Don\'t have an account? ',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      TextSpan(
+                        onEnter: (value) {},
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {},
+                        text: 'Sign Up',
+                        style: const TextStyle(
+                          color: Color(0xff263238),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  )),
+            ),
           ],
         ),
       ),
-    );
-  }
-}
-
-class PageViewComponents extends StatelessWidget {
-  PageViewComponents({
-    Key? key,
-    required this.image,
-    required this.title,
-    required this.description,
-  }) : super(key: key);
-
-  final String image;
-  final String title;
-  final String description;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Image.asset(
-          image,
-          height: 35.h,
-        ),
-        SizedBox(
-          height: 2.h,
-        ),
-        Text(
-          title,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18.sp,
-          ),
-        ),
-        SizedBox(
-          height: 2.h,
-        ),
-        Text(
-          description,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 12.sp,
-            color: Colors.grey,
-          ),
-        ),
-      ],
     );
   }
 }
