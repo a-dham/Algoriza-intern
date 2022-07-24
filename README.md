@@ -1,16 +1,17 @@
 # task_1
 
-A new Flutter project.
+A new Flutter Ui project (On Boarding - Login - SignUP)
+- use country code picker package in login and register pages ,
+- dots indicator Package in onboarding pages  ,
 
-## Getting Started
+([http://full/path/to/img.jpg](https://github.com/a-dham/Algoriza-intern/blob/main/ScreenShot/1.jpg) "Onboarding 1 "),
 
-This project is a starting point for a Flutter application.
+([http://full/path/to/img.jpg](https://github.com/a-dham/Algoriza-intern/blob/main/ScreenShot/2.jpg) "Onboarding 2 "),
 
-A few resources to get you started if this is your first Flutter project:
+([http://full/path/to/img.jpg](https://github.com/a-dham/Algoriza-intern/blob/main/ScreenShot/3.jpg) "Onboarding 3 "),
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+([http://full/path/to/img.jpg](https://github.com/a-dham/Algoriza-intern/blob/main/ScreenShot/Login.jpg) "Login"),
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+([http://full/path/to/img.jpg](https://github.com/a-dham/Algoriza-intern/blob/main/ScreenShot/SignUp.jpg) "SignUP"),
+
+
