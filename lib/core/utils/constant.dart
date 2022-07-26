@@ -1,12 +1,12 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
-const String onBoardingRoute = '/';
-const String loginScreenRoute = '/login';
-const String signUpScreenRoute = '/signUp';
-const String homeScreenRoute = '/home';
-// const String homeScreenRoute = '/home';
-// const String homeScreenRoute = '/home';
-// const String homeScreenRoute = '/home';
-// const String homeScreenRoute = '/home';
-
-const Color kMainColor = Color(0XFFF98903);
+//Route Names
+const String onBoarding = '/';
+const String signUp = '/signUp';
+const String login = '/login';
+const String home = '/home';
+const String addTask = '/addTask';
+//Colors
+const Color kBlackColor = Colors.black;
+const Color kGreyColor = Colors.grey;
+const Color kWhiteColor = Colors.white;

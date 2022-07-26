@@ -9,6 +9,7 @@ class CustomElevatedButton extends StatelessWidget {
     required this.circular,
     required this.onPressed,
     required this.verticalPadding,
+    this.size,
     this.borderColor = Colors.transparent,
   }) : super(key: key);
   final String text;
@@ -18,12 +19,16 @@ class CustomElevatedButton extends StatelessWidget {
   final VoidCallback onPressed;
   final double verticalPadding;
   final Color borderColor;
+  final Size? size;
 
+// final double? height;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
+
       style: ElevatedButton.styleFrom(
+        minimumSize: size,
         padding: EdgeInsets.symmetric(
           vertical: verticalPadding,
         ),

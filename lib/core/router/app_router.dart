@@ -1,31 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:task_1/screens/Auth/signUp/sign_up_screen.dart';
-import 'package:task_1/screens/onboarding/on_boarding.dart';
-
-import 'screens/Auth/Login/login_screen.dart';
-
-const String onBoarding = '/';
-const String signUp = '/signUp';
-const String login = '/login';
+import 'package:task_1/Presentation/task1/Auth/Login/login_screen.dart';
+import 'package:task_1/Presentation/task1/Auth/signUp/sign_up_screen.dart';
+import 'package:task_1/Presentation/task1/onboarding/on_boarding.dart';
+import 'package:task_1/Presentation/todoTask2/pages/addTask/add_task.dart';
+import 'package:task_1/Presentation/todoTask2/pages/home/home.dart';
+import 'package:task_1/core/utils/constant.dart';
 
 class AppRouter {
   Route<dynamic>? generateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case onBoarding:
-        return MaterialPageRoute(
-          builder: (context) => const OnBoarding(),
-        );
-      case signUp:
-        return MaterialPageRoute(
-          builder: (context) => const SignUpScreen(),
-        );
-      case login:
-        return MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
-        );
-    }
     return MaterialPageRoute(
-      builder: (context) => const OnBoarding(),
-    );
+        settings: settings,
+        builder: (context) {
+          switch (settings.name) {
+            case onBoarding:
+              return const OnBoarding();
+            case signUp:
+              return const SignUpScreen();
+            case login:
+              return const LoginScreen();
+            case home:
+              return const Home();
+            case addTask:
+              return AddTask();
+          }
+          return const Home();
+        });
   }
 }

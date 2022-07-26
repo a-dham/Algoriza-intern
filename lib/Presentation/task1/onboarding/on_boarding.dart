@@ -2,9 +2,8 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
-import 'package:task_1/app_router.dart';
-import 'package:task_1/screens/helperComponents/custom_elevated_button.dart';
-
+import 'package:task_1/core/custom_elevated_button.dart';
+import 'package:task_1/core/utils/constant.dart';
 import 'widgets/page_view_components.dart';
 
 class OnBoarding extends StatefulWidget {

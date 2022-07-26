@@ -2,9 +2,9 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:task_1/app_router.dart';
-import 'package:task_1/screens/helperComponents/customTextFormField.dart';
-import 'package:task_1/screens/helperComponents/custom_elevated_button.dart';
+import 'package:task_1/core/customTextFormField.dart';
+import 'package:task_1/core/custom_elevated_button.dart';
+import 'package:task_1/core/utils/constant.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);

@@ -2,8 +2,8 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:task_1/app_router.dart';
-import 'package:task_1/screens/helperComponents/custom_elevated_button.dart';
+import 'package:task_1/core/custom_elevated_button.dart';
+import 'package:task_1/core/utils/constant.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -90,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                         onChanged: print,
                         // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
                         initialSelection: 'EG',
-                        favorite: ['+39', 'FR'],
+                        favorite: const ['+39', 'FR'],
                         // optional. Shows only country name and flag
                         showCountryOnly: false,
                         // optional. Shows only country name and flag when popup is closed.
@@ -122,7 +122,7 @@ class LoginScreen extends StatelessWidget {
                   child: CustomElevatedButton(
                     text: 'Sign In',
                     textColor: Colors.white,
-                    buttonColor: Color(0xff263238),
+                    buttonColor: const Color(0xff263238),
                     circular: 5,
                     onPressed: () {},
                     verticalPadding: 20,

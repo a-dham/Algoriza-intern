@@ -15,12 +15,12 @@ class CustomeTextFormField extends StatelessWidget {
     return TextFormField(
       decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: TextStyle(color: Colors.grey, fontSize: 12.sp),
+          hintStyle: TextStyle(color: Colors.grey, fontSize: 12),
           suffix: suffixWidget,
           border: const OutlineInputBorder(
               borderSide: BorderSide(
-                color: Colors.grey,
-              ))),
+            color: Colors.grey,
+          ))),
     );
   }
 }
