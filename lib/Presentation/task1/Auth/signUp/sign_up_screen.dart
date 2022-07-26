@@ -84,6 +84,7 @@ class SignUpScreen extends StatelessWidget {
               height: 1.h,
             ),
             CustomeTextFormField(
+              textEditingController: null,
               hintText: 'Eg . example@email.com',
               suffixWidget: null,
             ),
@@ -147,6 +148,7 @@ class SignUpScreen extends StatelessWidget {
               height: 1.h,
             ),
             CustomeTextFormField(
+              textEditingController: null,
               hintText: 'Password',
               suffixWidget: IconButton(
                 onPressed: () {},

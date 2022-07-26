@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:task_1/Presentation/todoTask2/pages/home/widgets/all_tasks.dart';
+import 'package:task_1/Presentation/todoTask2/pages/home/widgets/completed_tasks.dart';
+import 'package:task_1/Presentation/todoTask2/pages/home/widgets/favorite_tasks.dart';
+import 'package:task_1/Presentation/todoTask2/pages/home/widgets/uncompleted_tasks.dart';
 import 'package:task_1/core/custom_elevated_button.dart';
 import 'package:task_1/core/utils/constant.dart';
 import 'package:task_1/core/utils/size_config.dart';
@@ -11,7 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  late double size = SizeConfig.defaultSize!;
+  late double size = SizeConfig.defaultSize ?? 9.3;
   TabController? tabController;
 
   @override
@@ -104,26 +108,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ),
                 ),
                 Expanded(
-                  child: TabBarView(controller: tabController, children: const [
+                  child: TabBarView(controller: tabController, children: [
                     Tab(
-                      child: Center(
-                        child: Text('all'),
-                      ),
+                      child: AllTasks(),
                     ),
                     Tab(
-                      child: Center(
-                        child: Text('complete'),
-                      ),
+                      child: CompleteTasks(),
                     ),
                     Tab(
-                      child: Center(
-                        child: Text('uncomplete'),
-                      ),
+                      child: UnCompleteTasks(),
                     ),
                     Tab(
-                      child: Center(
-                        child: Text('favorite'),
-                      ),
+                      child: FavoriteTasks(),
                     ),
                   ]),
                 ),
