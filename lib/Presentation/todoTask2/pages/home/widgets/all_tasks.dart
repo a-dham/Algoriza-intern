@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:task_1/core/utils/constant.dart';
 import 'package:task_1/core/utils/size_config.dart';
 
 class AllTasks extends StatelessWidget {
@@ -17,19 +16,19 @@ class AllTasks extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: size * 2, horizontal: size * 1.8),
       child: ListView.builder(
-          itemCount: 200,
+          itemCount: 3,
           itemBuilder: (context, index) {
             return ListTile(
               leading: Transform.scale(
                 scale: size / 6,
                 child: Checkbox(
-                  value: false,
+                  value: true,
                   onChanged: (value) {},
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6),
                   ),
                   activeColor: Colors.green,
-                  checkColor: kBlackColor,
+                  checkColor: Colors.white,
                   side: MaterialStateBorderSide.resolveWith(
                     (states) =>
                         const BorderSide(width: 1.0, color: Colors.green),

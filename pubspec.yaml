@@ -37,6 +37,10 @@ dependencies:
   sizer: ^2.0.15
   dots_indicator: ^2.1.0
   country_code_picker: ^2.0.2
+  sqflite: ^2.0.3
+  bloc: ^8.0.3
+  flutter_bloc: ^8.0.1
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -54,7 +58,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
- 
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

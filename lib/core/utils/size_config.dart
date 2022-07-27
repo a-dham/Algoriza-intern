@@ -20,6 +20,6 @@ class SizeConfig {
       defaultSize = defaultSize! * 0.50;
     }
 
-    print('this is the default size $defaultSize');
+    //  print('this is the default size $defaultSize');
   }
 }

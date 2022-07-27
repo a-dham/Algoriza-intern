@@ -9,15 +9,24 @@ class CustomeTextFormField extends StatelessWidget {
     @required this.suffixWidget,
     @required this.prefixWidget,
     required this.textEditingController,
+    @required this.keyboardType,
+    @required this.onTap,
+    @required this.validator,
   }) : super(key: key);
   final String? hintText;
   final Widget? suffixWidget;
   final Widget? prefixWidget;
   final TextEditingController? textEditingController;
+  final Function()? onTap;
+  final TextInputType? keyboardType;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
+      keyboardType: keyboardType,
+      onTap: onTap,
       controller: textEditingController,
       decoration: InputDecoration(
         prefix: prefixWidget,
