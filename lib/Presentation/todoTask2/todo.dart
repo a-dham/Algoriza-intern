@@ -9,10 +9,13 @@ class ToDo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const Home(),
-      onGenerateRoute: AppRouter().generateRoute,
+    return BlocProvider(
+      create: (context) => TodoCubit()..createDB(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const Home(),
+        onGenerateRoute: AppRouter().generateRoute,
+      ),
     );
   }
 }

@@ -22,9 +22,11 @@ class AppRouter {
               return const LoginScreen();
             case home:
               return const Home();
+
             case addTask:
-              return BlocProvider(
-                  create: (context) => TodoCubit(), child: AddTask());
+              return BlocProvider<TodoCubit>(
+                  create: (context) => TodoCubit()..createDB(),
+                  child: AddTask());
           }
           return const Home();
         });

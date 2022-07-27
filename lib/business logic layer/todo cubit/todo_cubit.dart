@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:sqflite/sqflite.dart';
@@ -10,26 +11,37 @@ class TodoCubit extends Cubit<TodoState> {
 
   static TodoCubit get(context) => BlocProvider.of(context);
   late Database database;
-  List<Map>? dataList;
+  List<Map> dataList = [];
+  List<Map> unCompleteList = [];
+  List<Map> completeList = [];
+  List<Map> favoriteList = [];
+
+  // open the database
 
   createDB() async {
-    // open the database
     database = await openDatabase('tOdo.db', version: 1,
         onCreate: (Database db, int version) async {
-          print('dataBas created');
+      print('dataBas created');
 
-          await db
-              .execute(
+      await db
+          .execute(
               'CREATE TABLE Tasks(id INTEGER PRIMARY KEY, status Text, title TEXT, deadline TEXT, startTime TEXT, endTime TEXT, remind TEXT, repeat TEXT)')
-              .then((value) {
-            print('table created');
-          }).catchError((error) {
-            print(error.toString());
-          });
-        }, onOpen: (Database db) {
-          print('databas opened');
-        });
+          .then((value) {
+        print('table created');
+      }).catchError((error) {
+        print(error.toString());
+      });
+    }, onOpen: (Database database) {
+      database = database;
+      getDB(database);
+      print('databas opened');
+    }).then((value) {
+      emit(CreateDBSuccess());
+      return database = value;
+    });
   }
+
+  // insert row
 
   Future insertDB({
     required String status,
@@ -40,22 +52,57 @@ class TodoCubit extends Cubit<TodoState> {
     required String remind,
     required String repeat,
   }) async {
-    await createDB();
     await database.transaction((txn) async {
-      await txn
+      txn
           .rawInsert(
         'INSERT INTO Tasks(status, title, deadLine, startTime, endTime, remind, repeat) VALUES("$status","$title","$startTime","$deadline","$endTime","$remind","$repeat")',
       )
           .then((value) {
         print('$value inserted success');
-      }).catchError((error) {
-        print(error.toString());
       });
+      getDB(database);
+      emit(TaskInsertSuccess());
     });
   }
 
-  getDB() async {
-    dataList = await database.rawQuery('SELECT * FROM Tasks');
-    print(dataList);
+  //get DB
+  void getDB(database) {
+    emit(TasksGetLoading());
+    database.rawQuery('SELECT * FROM Tasks').then((value) {
+      value.forEach((element) {
+        if (element['status'] == 'new') {
+          dataList.add(element);
+        } else if (element['status'] == 'complete') {
+          completeList.add(element);
+        } else if (element['status'] == 'unComplete') {
+          unCompleteList.add(element);
+        } else {
+          favoriteList.add(element);
+        }
+      });
+    });
+    emit(TasksGetSuccess());
+  }
+
+  //update DB
+
+  upDateDB({
+    required String status,
+    required int id,
+  }) async {
+    await database.rawUpdate('UPDATE Tasks SET status = ? WHERE id = ? ',
+        [status, id]).then((value) {
+      emit(TaskUpdateSuccess());
+      print(dataList);
+    });
+  }
+
+  //delete DB
+
+  deleteDB({required int id}) async {
+    await database.rawDelete('DELETE FROM Tasks WHERE id = $id').then((value) {
+      emit(TaskDeleteSuccess());
+      print(dataList);
+    });
   }
 }
