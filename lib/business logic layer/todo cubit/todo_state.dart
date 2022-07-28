@@ -20,3 +20,5 @@ class TasksGetError extends TodoState {}
 class TaskUpdateSuccess extends TodoState {}
 
 class TaskDeleteSuccess extends TodoState {}
+
+class ChangeCheckBox extends TodoState {}

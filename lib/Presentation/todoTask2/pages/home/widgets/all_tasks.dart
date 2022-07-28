@@ -7,15 +7,13 @@ import 'package:task_1/core/utils/size_config.dart';
 class AllTasks extends StatelessWidget {
   AllTasks({Key? key}) : super(key: key);
   final double size = SizeConfig.defaultSize!;
-  List<Map> tasks = [];
 
   @override
   Widget build(BuildContext context) {
-    TodoCubit cubit = TodoCubit.get(context);
     return BlocConsumer<TodoCubit, TodoState>(
       listener: (context, state) {},
       builder: (context, state) {
-        tasks = cubit.dataList;
+        List<Map> tasks = TodoCubit.get(context).dataList;
 
         if (tasks.isNotEmpty) {
           return Padding(
@@ -24,7 +22,8 @@ class AllTasks extends StatelessWidget {
             child: ListView.builder(
                 itemCount: tasks.length,
                 itemBuilder: (context, index) {
-                  return taskItem(tasks[index], context, cubit);
+                  return taskItem(
+                      tasks[index], context, TodoCubit.get(context));
                 }),
           );
         } else {
@@ -61,8 +60,11 @@ class AllTasks extends StatelessWidget {
       leading: Transform.scale(
         scale: size / 6,
         child: Checkbox(
-          value: false,
-          onChanged: (value) {},
+          value: cubit.isChecked,
+          onChanged: (value) {
+            cubit.isChecked = value;
+            cubit.chekBox();
+          },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(6),
           ),

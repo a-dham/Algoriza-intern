@@ -31,11 +31,11 @@ class TodoCubit extends Cubit<TodoState> {
       }).catchError((error) {
         print(error.toString());
       });
-    }, onOpen: (Database database) {
-      database = database;
-      getDB(database);
-      print('databas opened');
+    }, onOpen: (Database db) {
+      database = db;
+      print('database opened');
     }).then((value) {
+      getDB(value);
       emit(CreateDBSuccess());
       return database = value;
     });
@@ -59,9 +59,9 @@ class TodoCubit extends Cubit<TodoState> {
       )
           .then((value) {
         print('$value inserted success');
+        getDB(database);
+        emit(TaskInsertSuccess());
       });
-      getDB(database);
-      emit(TaskInsertSuccess());
     });
   }
 
@@ -70,18 +70,18 @@ class TodoCubit extends Cubit<TodoState> {
     emit(TasksGetLoading());
     database.rawQuery('SELECT * FROM Tasks').then((value) {
       value.forEach((element) {
-        if (element['status'] == 'new') {
-          dataList.add(element);
+        dataList.add(element);
+        if (element['status'] == 'favorite') {
+          favoriteList.add(element);
         } else if (element['status'] == 'complete') {
           completeList.add(element);
         } else if (element['status'] == 'unComplete') {
           unCompleteList.add(element);
-        } else {
-          favoriteList.add(element);
         }
+
+        emit(TasksGetSuccess());
       });
     });
-    emit(TasksGetSuccess());
   }
 
   //update DB
@@ -92,17 +92,26 @@ class TodoCubit extends Cubit<TodoState> {
   }) async {
     await database.rawUpdate('UPDATE Tasks SET status = ? WHERE id = ? ',
         [status, id]).then((value) {
+      getDB(database);
       emit(TaskUpdateSuccess());
-      print(dataList);
     });
   }
 
   //delete DB
 
   deleteDB({required int id}) async {
-    await database.rawDelete('DELETE FROM Tasks WHERE id = $id').then((value) {
+    await database
+        .rawDelete('DELETE FROM Tasks WHERE id = ?', [id]).then((value) {
+      getDB(database);
       emit(TaskDeleteSuccess());
-      print(dataList);
     });
+  }
+
+  //change checkBox
+  bool isChecked = false;
+
+  chekBox() {
+    isChecked = !isChecked;
+    emit(ChangeCheckBox());
   }
 }

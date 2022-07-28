@@ -24,8 +24,9 @@ class AddTask extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return BlocConsumer<TodoCubit, TodoState>(listener: (context, state) {
-      // if (state is TaskInsertSuccess) {
-      // }
+      if (state is TaskInsertSuccess) {
+        Navigator.pop(context, home);
+      }
     }, builder: (context, state) {
       return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -266,8 +267,7 @@ class AddTask extends StatelessWidget {
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         print('validate done');
-                        TodoCubit.get(context)
-                            .insertDB(
+                        TodoCubit.get(context).insertDB(
                           status: 'new',
                           title: titleTextController.text,
                           deadline: deadlineTextController.text,
@@ -275,10 +275,7 @@ class AddTask extends StatelessWidget {
                           endTime: endTimeTextController.text,
                           remind: remindTextController.text,
                           repeat: repeatTextController.text,
-                        )
-                            .then((value) {
-                          Navigator.pop(context, home);
-                        });
+                        );
                       }
                     },
                     verticalPadding: size * 1.8,
